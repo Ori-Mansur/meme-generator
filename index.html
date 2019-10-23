@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Ultimate Meme Creator</title>
+</head>
+
+<body>
+    <header class="main-header">
+        <section class="logo">LOGO</section>
+        <section class="nav-btn" onclick="toggelMenu()">
+            <div class="humburger"></div>
+            <div class="humburger"></div>
+            <div class="humburger"></div>
+        </section>
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Gallery</a>
+                </li>
+                <li>
+                    <a href="">Memes</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="keywords hide">
+            <input type="text" name="search" class="search" placeholder="Enter search keyword">
+            <ul>
+                <li>
+                    <a href="">Gallery</a>
+                </li>
+                <li>
+                    <a href="">Memes</a>
+                </li>
+                <li>
+                    <a href="">About</a>
+                </li>
+                <li>
+                    <a href="">
+                        <more class="">more...</more>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <section class="gallery hide">
+            <img src="imgs/003.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/004.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/005.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/006.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/12.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/19.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/5.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/8.jpg" alt="" onclick="onOpenCanvas(this)">
+            <img src="imgs/9.jpg" alt="" onclick="onOpenCanvas(this)">
+        </section>
+        <section class="canvas-container">
+            <canvas id="meme-edotir"></canvas>
+        </section>
+        <section class="editor-tools">
+            <input type="text" name="meme" class="meme" onchange="onDrawTxt(this.value)">
+            <div class="main-setting-btns">
+                <button onclick="onChangeCurrTxt()" class="tools"><img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>                
+                <button onclick="onAddTxt()" class="tools"><img src="ICONS/add.png"></button>                
+                <button onclick="onRemoveTxt()" class="tools"><img src="ICONS/trash.png" ></button>
+            </div>
+            <div class="main-setting-btns">
+                <button onclick="onEditTxtSize(1)" class="tools"><img src="ICONS/increase font - icon.png"></button>                
+                <button onclick="onEditTxtSize(-1)" class="tools"><img src="ICONS/decrease font - icon.png" ></button>
+                <button onclick="onEditTxtAlign('left')" class="tools"><img src="ICONS/align-to-left.png" ></button>
+                <button onclick="onEditTxtAlign('center')" class="tools"><img src="ICONS/center-text-alignment.png" ></button>
+                <button onclick="onEditTxtAlign('right')" class="tools"><img src="ICONS/align-to-right.png" ></button>
+            </div>
+            <div class="main-setting-btns">
+                <select name="" class="fonts">
+                    <option value="">Impact</option>
+                </select>
+                
+                <button onclick="onEditTxtColor()" class="tools-color1 tools">
+                    <input type="color" name="" class="txt-color">
+                </button>
+                <button onclick="editTxtColor(color)" class="tools-color2 tools">
+                    <input type="color" name="" class="font-color">
+                </button>
+            </div>
+            <div class="icons-add">
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <img src="png-icons/001-attachment.png" alt="" class="png">
+            <img src="png-icons/002-healthcare-and-medical.png" alt="" class="png">
+            <img src="png-icons/007-gift.png" alt="" class="png">
+            <img src="png-icons/008-donation.png" alt="" class="png">
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <button class="share">Share</button>
+        </section>
+    </main>
+    <footer>
+        
+    </footer>
+
+    <script src="js/utils-service.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
