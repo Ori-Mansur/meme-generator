@@ -67,7 +67,8 @@
             <canvas id="meme-edotir"></canvas>
         </section>
         <section class="editor-tools">
-            <input type="text" name="meme" class="meme" onchange="onDrawTxt(this.value)">
+            <input type="text" name="meme" class="meme" 
+            oninput="onDrawTxt(this.value)" placeholder="What on your mind">
             <div class="main-setting-btns">
                 <button onclick="onChangeCurrTxt()" class="tools"><img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>                
                 <button onclick="onAddTxt()" class="tools"><img src="ICONS/add.png"></button>                
@@ -76,17 +77,17 @@
             <div class="main-setting-btns">
                 <button onclick="onEditTxtSize(1)" class="tools"><img src="ICONS/increase font - icon.png"></button>                
                 <button onclick="onEditTxtSize(-1)" class="tools"><img src="ICONS/decrease font - icon.png" ></button>
-                <button onclick="onEditTxtAlign('left')" class="tools"><img src="ICONS/align-to-left.png" ></button>
+                <button onclick="onEditTxtAlign('right')" class="tools"><img src="ICONS/align-to-left.png" ></button>
                 <button onclick="onEditTxtAlign('center')" class="tools"><img src="ICONS/center-text-alignment.png" ></button>
-                <button onclick="onEditTxtAlign('right')" class="tools"><img src="ICONS/align-to-right.png" ></button>
+                <button onclick="onEditTxtAlign('left')" class="tools"><img src="ICONS/align-to-right.png" ></button>
             </div>
             <div class="main-setting-btns">
                 <select name="" class="fonts">
                     <option value="">Impact</option>
                 </select>
                 
-                <button onclick="onEditTxtColor()" class="tools-color1 tools">
-                    <input type="color" name="" class="txt-color">
+                <button class="tools-color1 tools">
+                    <input type="color" name="" class="txt-color" onchange="onEditTxtColor(this.value)">
                 </button>
                 <button onclick="editTxtColor(color)" class="tools-color2 tools">
                     <input type="color" name="" class="font-color">
@@ -104,7 +105,7 @@
         </section>
     </main>
     <footer>
-        
+
     </footer>
 
     <script src="js/utils-service.js"></script>

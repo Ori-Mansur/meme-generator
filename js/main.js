@@ -25,10 +25,15 @@ function resizeCanvas() {
 }
 function onDrawTxt(elVal){
     editTxt(elVal)
-    var x=gCanvas.width/2
-    drawText(elVal, x, 18)
+    defineTxtSetting()
     
-
+    // document.querySelector('.meme').value=''
+}
+function defineTxtSetting(){
+    var txt=getTxt(0)
+    var y=txt.size+5
+    gCtx.clearRect(0,0,gCanvas.width,y+5)
+    drawText(txt)
 }
 
 function drawImg(elImg) {
@@ -36,39 +41,57 @@ function drawImg(elImg) {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
 }
 
-function drawText(txt, x, y) {
-    // gCtx.fillStyle = 'orange'
-    // gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height)
-    // gCtx.fillStyle = '#fff'
-    // gCtx.strokeStyle = 'green'
-    // gCtx.lineWidth = 5
-    // gCtx.font = "80px Arial";
-    gCtx.fillText(txt, x, y);
-    gCtx.strokeText(txt, x, y);
+function drawText(txt) {
+    gCtx.textAlign=txt.align
+    var y=txt.size
+    gCtx.fillStyle = txt.color
+    gCtx.font = txt.size+'px Arial';
+    gCtx.fillText(txt.line, gCanvas.width/2, y);
+    // gCtx.strokeText(txt.line, x, y);
+    
 }
 
-function onEditTxtColor(){
-    var color=document.querySelector('.txt-color').value
+function onEditTxtColor(color){
+    
     editTxtColor(color)
+    defineTxtSetting()  
 }
 function onEditTxt(txt){
     editTxt(txt)
-    
 }            
 function onEditTxtSize(operator){
     editTxtSize(operator)
+    defineTxtSetting()
    
 }            
 function onEditTxtAlign(txtAlign){
-    editTxtAlign(txtAlign)   
+    editTxtAlign(txtAlign) 
+    defineTxtSetting()  
 } 
 
 function onRemoveTxt(){
     removeTxt()
+    gCtx.clearRect(0,0,gCanvas.width,40)
 }
 function onAddTxt(){
     addTxt()
 }
 function onChangeCurrTxt(){
     changeCurrTxt()
+}
+function setAlignTxt(txt){
+    var x;
+    gCtx.txtAlign=txt.align
+switch(txt.align) {
+    case 'center':  
+        x = gCanvas.width / 2
+      break;
+    case 'left':
+     x = 10
+      break; 
+    case 'right':
+      x = gCanvas.width-(txt.line.length*txt.size);
+      break;
+  }
+  return x
 }
