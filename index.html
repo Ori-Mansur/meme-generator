@@ -10,10 +10,12 @@
     <title>Ultimate Meme Creator</title>
 </head>
 
-<body>
+<body onload="init()">
     <header class="main-header">
-        <section class="logo">LOGO</section>
-        <section class="nav-btn" onclick="toggelMenu()">
+        <section class="logo">
+            <img src="/ICONS/output-onlinepngtools.png">
+        </section>
+        <section class="nav-btn" onclick="toggleMenu()">
             <div class="humburger"></div>
             <div class="humburger"></div>
             <div class="humburger"></div>
@@ -32,80 +34,102 @@
             </ul>
         </nav>
     </header>
+
+    <section class="keywords">
+        <section class="search-area">
+        <input type="text" name="search" class="search" placeholder="Enter search keyword">
+        <button class="search-btn">
+            <img src="/ICONS/search-icon.png" alt="">
+        </button>
+    </section>
+        <ul>
+            <li>
+                <a href="">Gallery</a>
+            </li>
+            <li>
+                <a href="">Memes</a>
+            </li>
+            <li>
+                <a href="">About</a>
+            </li>
+            <li>
+                <a href="">
+                    <more class="">more...</more>
+                </a>
+            </li>
+        </ul>
+    </section>
     <main>
-        <section class="keywords hide">
-            <input type="text" name="search" class="search" placeholder="Enter search keyword">
-            <ul>
-                <li>
-                    <a href="">Gallery</a>
-                </li>
-                <li>
-                    <a href="">Memes</a>
-                </li>
-                <li>
-                    <a href="">About</a>
-                </li>
-                <li>
-                    <a href="">
-                        <more class="">more...</more>
-                    </a>
-                </li>
-            </ul>
+        <section class="gallery">
+
         </section>
-        <section class="gallery hide">
-            <img src="imgs/003.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/004.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/005.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/006.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/12.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/19.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/5.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/8.jpg" alt="" onclick="onOpenCanvas(this)">
-            <img src="imgs/9.jpg" alt="" onclick="onOpenCanvas(this)">
+        <section class="canvas-container hide">
+            <canvas id="meme-edotir" onclick="moveTxt(event)" ondragleave="onSetIconPos(event)"></canvas>
         </section>
-        <section class="canvas-container">
-            <canvas id="meme-edotir"></canvas>
-        </section>
-        <section class="editor-tools">
-            <input type="text" name="meme" class="meme" 
-            oninput="onDrawTxt(this.value)" placeholder="What on your mind">
-            <div class="main-setting-btns">
-                <button onclick="onChangeCurrTxt()" class="tools"><img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>                
-                <button onclick="onAddTxt()" class="tools"><img src="ICONS/add.png"></button>                
-                <button onclick="onRemoveTxt()" class="tools"><img src="ICONS/trash.png" ></button>
+        <section class="editor-tools hide">
+            <input type="text" name="meme" class="meme" oninput="onDrawTxt(this.value)" placeholder="What on your mind">
+            <div class="first-setting-btns">
+                    <button onclick="onMoveLine(-1)" class="tools"><img src="ICONS/icons8-up-60.png"></button>
+                    <button onclick="onMoveLine(1)" class="tools"><img src="ICONS/icons8-down-arrow-60.png"></button>
+                <button onclick="onChangeCurrTxt()" class="tools">
+                    <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+                <button onclick="onAddTxt()" class="tools"><img src="ICONS/add.png"></button>
+                <button onclick="onRemoveTxt()" class="tools"><img src="ICONS/trash.png"></button>
             </div>
-            <div class="main-setting-btns">
-                <button onclick="onEditTxtSize(1)" class="tools"><img src="ICONS/increase font - icon.png"></button>                
-                <button onclick="onEditTxtSize(-1)" class="tools"><img src="ICONS/decrease font - icon.png" ></button>
-                <button onclick="onEditTxtAlign('right')" class="tools"><img src="ICONS/align-to-left.png" ></button>
-                <button onclick="onEditTxtAlign('center')" class="tools"><img src="ICONS/center-text-alignment.png" ></button>
-                <button onclick="onEditTxtAlign('left')" class="tools"><img src="ICONS/align-to-right.png" ></button>
+            <div class="sec-setting-btns">
+                <button onclick="onEditTxtSize(1)" class="tools"><img src="ICONS/increase font - icon.png"></button>
+                <button onclick="onEditTxtSize(-1)" class="tools"><img src="ICONS/decrease font - icon.png"></button>
+                <button onclick="onEditTxtAlign('right')" class="tools"><img src="ICONS/align-to-left.png"></button>
+                <button onclick="onEditTxtAlign('center')" class="tools"><img
+                        src="ICONS/center-text-alignment.png"></button>
+                <button onclick="onEditTxtAlign('left')" class="tools"><img src="ICONS/align-to-right.png"></button>
             </div>
-            <div class="main-setting-btns">
-                <select name="" class="fonts">
-                    <option value="">Impact</option>
+            <div class="third-setting-btns">
+                <select name="" class="fonts" onchange="onChangeFont(this.value)">
+                    <option value="Impact">Impact</option>
+                    <option value="ariel">Ariel</option>
+                    <option value="Calibri">Calibri</option>
+                    <option value="Lucida Sans">Lucida Sans</option>
+                    <option value="Noto">Noto</option>
+                    <option value="Century Gothic">Century Gothic</option>
+                    <option value="Lucida Sans Typewriter">Lucida Sans Typewriter</option>
+                    <option value="Brush Script MT">Brush Script MT</option>
+                    <option value="papyrus">papyrus</option>
                 </select>
-                
+
                 <button class="tools-color1 tools">
                     <input type="color" name="" class="txt-color" onchange="onEditTxtColor(this.value)">
                 </button>
-                <button onclick="editTxtColor(color)" class="tools-color2 tools">
-                    <input type="color" name="" class="font-color">
+                <button class="tools-color2 tools">
+                    <input type="color" name="" class="font-color" onchange="onEditTxtFillColor(this.value)">
                 </button>
             </div>
-            <div class="icons-add">
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-            <img src="png-icons/001-attachment.png" alt="" class="png">
-            <img src="png-icons/002-healthcare-and-medical.png" alt="" class="png">
-            <img src="png-icons/007-gift.png" alt="" class="png">
-            <img src="png-icons/008-donation.png" alt="" class="png">
-            <a class="next" onclick="plusSlides(1)">&#10095;</a>
-        </div>
-        <button class="share">Share</button>
+            <div class="stickers">
+
+            </div>
+            <button class="share">Share</button>
         </section>
     </main>
+    <section class="profile">
+        <img src="/imgs/003.jpg" alt="" class="profile-pic">
+        <div class="prifile-content">
+            <h3>Monica Geller</h3>
+        <p>
+            is a fictional character, one of the six main characters
+            who appears on the American sitcom Friends (1994–2004).
+            Created by David Crane and Marta Kauffman
+        </p>
+        <button class="icons-social"><img src="/ICONS/facebook-logo.png" alt="" ></button>
+        <button class="icons-social"><img src="/ICONS/linkedin-logo.png" alt="" ></button>
+        <button class="icons-social"><img src="/ICONS/github-logo.png" alt="" ></button>
+    </div>
+    </section>
     <footer>
+            <img src="/ICONS/output-onlinepngtools.png">
+            <div>
 
+                all rights reserved 2019
+            </div>
     </footer>
 
     <script src="js/utils-service.js"></script>
