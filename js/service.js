@@ -26,8 +26,8 @@ var gMeme = {
         color: 'white',
         frameColor: 'black',
         font: 'Impact',
-        y: 25,
-        draggable: true
+        y: 28,
+        x: ''
     }
     ]
 }
@@ -76,7 +76,6 @@ function moveLine(operator) {
 }
 function editTxtAlign(txtAlign) {
     gMeme.txts[gMeme.selectedTxtIdx].align = txtAlign
-
 }
 function editTxtColor(color) {
     gMeme.txts[gMeme.selectedTxtIdx].frameColor = color
@@ -89,8 +88,6 @@ function changeFont(font) {
 }
 function removeTxt() {
     gMeme.txts.splice(gMeme.selectedTxtIdx, 1)
-
-
 }
 function addTxt() {
     var y = 28
@@ -104,12 +101,11 @@ function addTxt() {
         frameColor: 'black',
         font: 'Impact',
         y,
+        x: gCanvas.width / 2
     })
-
     gMeme.selectedTxtIdx = gMeme.txts.length - 1
 }
 function changeCurrTxt() {
-
     if (gMeme.selectedTxtIdx >= gMeme.txts.length - 1) {
         gMeme.selectedTxtIdx = 0
     } else gMeme.selectedTxtIdx++

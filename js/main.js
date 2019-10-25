@@ -2,9 +2,9 @@
 
 let gCanvas;
 let gCtx;
+let gMoveTxt = false
 
-function init(){
-
+function init() {
     renderImgs()
 }
 
@@ -21,12 +21,12 @@ function onOpenCanvas(el) {
     drawImg(el)
     renderCanvas()
 }
+
 function renderImgs() {
     var imgs = getImgs()
     var HTMLs = ''
     imgs.forEach(img => {
         HTMLs += `<img src="${img.url}" id="${img.id}" onclick="onOpenCanvas(this)"></img>`
-
     })
     document.querySelector('.gallery').innerHTML = HTMLs
 }
@@ -41,26 +41,55 @@ function renderStickers() {
     document.querySelector('.stickers').innerHTML = HTMLs
 
 }
-function moveTxt(ev) {
-    var objtxt = getTxt()
-    var x = gCtx.measureText(objtxt.line)
-    if (ev.offsetX > x.actualBoundingBoxLeft) console.log(x, ev.offsetX);
 
+function moveTxtModile(ev) {
+    ev.preventDefault()
+    var offsetX = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
+    var offsetY = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
+    var objtxt = getTxt()
+    var xStart = objtxt.x - gCtx.measureText(objtxt.line).width / 2
+    var xEnd = objtxt.x + gCtx.measureText(objtxt.line).width / 2
+    if (offsetX > xStart && offsetX < xEnd &&
+        offsetY < objtxt.y && offsetY > objtxt.y - objtxt.size &&
+        ev.type === 'touchstart') gMoveTxt = true
+    if (gMoveTxt) {
+        objtxt.y = offsetY
+        objtxt.x = offsetX
+        renderCanvas()
+    }
 }
 
+function moveTxt(ev) {
+    var objtxt = getTxt()
+    var xStart = objtxt.x - gCtx.measureText(objtxt.line).width / 2
+    var xEnd = objtxt.x + gCtx.measureText(objtxt.line).width / 2
+    if (ev.offsetX > xStart && ev.offsetX < xEnd &&
+        ev.offsetY < objtxt.y && ev.offsetY > objtxt.y - objtxt.size &&
+        ev.type === 'mousedown') gMoveTxt = true
+    if (gMoveTxt) {
+        objtxt.y = ev.offsetY
+        objtxt.x = ev.offsetX
+        renderCanvas()
+    }
+}
+
+function moveTxtEnd() {
+    gMoveTxt = false
+}
 
 function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container');
     gCanvas.width = elContainer.offsetWidth
     gCanvas.height = elContainer.offsetHeight
 }
+
 function onDrawTxt(elVal) {
     editTxt(elVal)
     renderCanvas()
-
-    // document.querySelector('.meme').value=''
 }
+
 function renderCanvas() {
+    scrollToCanvas()
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
     var memes = getMemes()
     var img = document.getElementById(memes.selectedImgId)
@@ -77,14 +106,13 @@ function drawImg(elImg) {
 }
 
 function drawText(txt) {
+    if (!txt.x) txt.x = gCanvas.width / 2
     gCtx.textAlign = txt.align
     gCtx.fillStyle = txt.color
     gCtx.strokeStyle = txt.frameColor
     gCtx.font = txt.size + 'px ' + txt.font;
-    gCtx.fillText(txt.line, gCanvas.width / 2, txt.y);
-    gCtx.strokeText(txt.line, gCanvas.width / 2, txt.y);
-
-
+    gCtx.fillText(txt.line, txt.x, txt.y);
+    gCtx.strokeText(txt.line, txt.x, txt.y);
 }
 
 function onEditTxtColor(color) {
@@ -102,12 +130,10 @@ function onEditTxt(txt) {
 function onEditTxtSize(operator) {
     editTxtSize(operator)
     renderCanvas()
-
 }
 function onMoveLine(operator) {
     moveLine(operator)
     renderCanvas()
-
 }
 
 function onEditTxtAlign(txtAlign) {
@@ -122,7 +148,6 @@ function onChangeFont(font) {
 function onRemoveTxt() {
     removeTxt()
     renderCanvas()
-
 }
 function onAddTxt() {
     document.querySelector('.meme').value = ''
@@ -147,9 +172,21 @@ function onSetIconPos(ev) {
     ev.preventDefault()
     var stickers = getStickers()
     var img = document.getElementById(stickers.selectedStickerId)
-    console.log(ev.view, gCanvas.height, img.style.width);
     gCtx.drawImage(img, 0, 0, 40, 40)
 }
+
+function scrollToCanvas() {
+    if (document.activeElement.tagName == "INPUT") {
+        var el = document.querySelector('canvas')
+        el.scrollIntoView()
+    }
+}
+
+function toggleMenu() {
+    var nav = document.querySelector('nav')
+    nav.classList.toggle('open-nav');
+}
+
 function setAlignTxt(txt) {
     var x;
     gCtx.txtAlign = txt.align
@@ -165,9 +202,4 @@ function setAlignTxt(txt) {
             break;
     }
     return x
-}
-
-function toggleMenu() {
-    var nav = document.querySelector('nav')
-    nav.classList.toggle('open-nav');
 }

@@ -37,11 +37,11 @@
 
     <section class="keywords">
         <section class="search-area">
-        <input type="text" name="search" class="search" placeholder="Enter search keyword">
-        <button class="search-btn">
-            <img src="ICONS/search-icon.png" alt="">
-        </button>
-    </section>
+            <input type="text" name="search" class="search" placeholder="Enter search keyword">
+            <button class="search-btn">
+                <img src="ICONS/search-icon.png" alt="">
+            </button>
+        </section>
         <ul>
             <li>
                 <a href="">Gallery</a>
@@ -63,14 +63,22 @@
         <section class="gallery">
 
         </section>
+
         <section class="canvas-container hide">
-            <canvas id="meme-edotir" onclick="moveTxt(event)" ondragleave="onSetIconPos(event)"></canvas>
+            <canvas id="meme-edotir" 
+            onmousedown="moveTxt(event)" 
+            onmousemove="moveTxt(event)" 
+            onmouseup="moveTxtEnd()"
+            ontouchstart="moveTxtModile(event)" 
+            ontouchmove="moveTxtModile(event)" 
+            ontouchend="moveTxtEnd()"
+            ondragleave="onSetIconPos(event)"></canvas>
         </section>
         <section class="editor-tools hide">
             <input type="text" name="meme" class="meme" oninput="onDrawTxt(this.value)" placeholder="What on your mind">
             <div class="first-setting-btns">
-                    <button onclick="onMoveLine(-1)" class="tools"><img src="ICONS/icons8-up-60.png"></button>
-                    <button onclick="onMoveLine(1)" class="tools"><img src="ICONS/icons8-down-arrow-60.png"></button>
+                <button onclick="onMoveLine(-1)" class="tools"><img src="ICONS/icons8-up-60.png"></button>
+                <button onclick="onMoveLine(1)" class="tools"><img src="ICONS/icons8-down-arrow-60.png"></button>
                 <button onclick="onChangeCurrTxt()" class="tools">
                     <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
                 <button onclick="onAddTxt()" class="tools"><img src="ICONS/add.png"></button>
@@ -114,22 +122,22 @@
         <img src="imgs/003.jpg" alt="" class="profile-pic">
         <div class="prifile-content">
             <h3>Monica Geller</h3>
-        <p>
-            is a fictional character, one of the six main characters
-            who appears on the American sitcom Friends (1994–2004).
-            Created by David Crane and Marta Kauffman
-        </p>
-        <button class="icons-social"><img src="ICONS/facebook-logo.png" alt="" ></button>
-        <button class="icons-social"><img src="ICONS/linkedin-logo.png" alt="" ></button>
-        <button class="icons-social"><img src="ICONS/github-logo.png" alt="" ></button>
-    </div>
+            <p>
+                is a fictional character, one of the six main characters
+                who appears on the American sitcom Friends (1994–2004).
+                Created by David Crane and Marta Kauffman
+            </p>
+            <button class="icons-social"><img src="ICONS/facebook-logo.png" alt=""></button>
+            <button class="icons-social"><img src="ICONS/linkedin-logo.png" alt=""></button>
+            <button class="icons-social"><img src="ICONS/github-logo.png" alt=""></button>
+        </div>
     </section>
     <footer>
-            <img src="ICONS/output-onlinepngtools.png">
-            <div>
+        <img src="ICONS/output-onlinepngtools.png">
+        <div>
 
-                all rights reserved 2019
-            </div>
+            all rights reserved 2019
+        </div>
     </footer>
 
     <script src="js/utils-service.js"></script>
