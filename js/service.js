@@ -40,7 +40,6 @@ var gStickers = {
         { id: gStickerId++, url: 'png-icons/007-gift.png' },
         { id: gStickerId++, url: 'png-icons/008-donation.png' }
     ]
-
 }
 function getMemes() {
     return gMeme
