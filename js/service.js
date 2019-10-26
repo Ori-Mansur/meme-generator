@@ -33,14 +33,21 @@ var gMeme = {
 }
 
 var gStickers = {
+    endIdxToShow: 4,
     selectedStickerId: 0,
-    stickers: [
-        { id: gStickerId++, url: 'png-icons/001-attachment.png' },
-        { id: gStickerId++, url: 'png-icons/002-healthcare-and-medical.png' },
-        { id: gStickerId++, url: 'png-icons/007-gift.png' },
-        { id: gStickerId++, url: 'png-icons/008-donation.png' }
+    pngs: [
+        { id: gStickerId++, url: 'png-icons/001-attachment.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/002-healthcare-and-medical.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/007-gift.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/008-donation.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/003-birthday-and-party.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/004-cowboy-hat.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/005-hat.png', size: 40, y: 0, x: 0 },
+        { id: gStickerId++, url: 'png-icons/009-gift-box.png', size: 40, y: 0, x: 0 }
     ]
 }
+
+var gSavedMemes = []
 function getMemes() {
     return gMeme
 }
@@ -52,6 +59,17 @@ function getImgs() {
 }
 function getStickers() {
     return gStickers
+}
+function getSavedMemes() {
+    var savedMemes = loadFromStorage('imgsData')
+    gSavedMemes = savedMemes
+    return gSavedMemes
+}
+
+function saveDataImg(imgURL) {
+    getSavedMemes()
+    gSavedMemes.push(imgURL)
+    saveToStorage('imgsData', gSavedMemes)
 }
 
 function selectSticker(el) {
@@ -108,4 +126,11 @@ function changeCurrTxt() {
     if (gMeme.selectedTxtIdx >= gMeme.txts.length - 1) {
         gMeme.selectedTxtIdx = 0
     } else gMeme.selectedTxtIdx++
+}
+function setStickersIdxToShow(operator) {
+    console.log(gStickers.endIdxToShow, gStickers.pngs.length);
+    if (gStickers.endIdxToShow >= gStickers.pngs.length) {
+        gStickers.endIdxToShow = 3
+    }
+    gStickers.endIdxToShow += operator
 }      

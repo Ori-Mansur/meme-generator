@@ -1,50 +1,52 @@
+'use strict'
 
-function PostImageToFacebook(authToken) {
-   var canvas = document.querySelector('canvas');
-   var imageData = canvas.toDataURL("image/png");
-   try {
-       blob = dataURItoBlob(imageData);
-   } catch (e) {
-       console.log(e);
-   }
-   var fd = new FormData();
-   fd.append("access_token", authToken);
-   fd.append("source", blob);
-   fd.append("message", "Photo Text");
-   try {
-       $.ajax({
-           url: "https://graph.facebook.com/me/photos?access_token=" + authToken,
-           type: "POST",
-           data: fd,
-           processData: false,
-           contentType: false,
-           cache: false,
-           success: function (data) {
-               console.log("success " + data);
-               $("#poster").html("Posted Canvas Successfully");
-           },
-           error: function (shr, status, data) {
-               console.log("error " + data + " Status " + shr.status);
-           },
-           complete: function () {
-               console.log("Posted to facebook");
-           }
-       });
+function uploadImg(elForm, ev) {
+   ev.preventDefault();
+   var canvas = document.querySelector('canvas')
+   document.getElementById('imgData').value = canvas.toDataURL("image/jpeg");
 
-   } catch (e) {
-       console.log(e);
+   // A function to be called if request succeeds
+   function onSuccess(uploadedImgUrl) {
+      uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+      document.querySelector('.share').innerHTML = `
+       <a class="w-inline-block social-share-btn btn fb" 
+       href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" 
+       title="Share on Facebook" target="_blank" 
+       onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); 
+       return false;">
+       Publish   
+       </a>`
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`)
    }
+   (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/he_IL/sdk.js#xfbml=1&version=v3.0&appId=807866106076694&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   doUploadImg(elForm, onSuccess);
 }
 
-// Convert a data URI to blob
-function dataURItoBlob(dataURI) {
-   var byteString = atob(dataURI.split(',')[1]);
-   var ab = new ArrayBuffer(byteString.length);
-   var ia = new Uint8Array(ab);
-   for (var i = 0; i < byteString.length; i++) {
-       ia[i] = byteString.charCodeAt(i);
-   }
-   return new Blob([ab], {
-       type: 'image/png'
-   });
+function doUploadImg(elForm, onSuccess) {
+   var formData = new FormData(elForm);
+
+   fetch('http://ca-upload.com/here/upload.php', {
+      method: 'POST',
+      body: formData
+   })
+      .then(function (response) {
+         return response.text()
+      })
+
+      .then(onSuccess)
+      .catch(function (error) {
+         console.error(error)
+      })
 }
+
+
+
+
+// facebook api

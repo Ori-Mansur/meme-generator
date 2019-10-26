@@ -3,9 +3,11 @@
 let gCanvas;
 let gCtx;
 let gMoveTxt = false
+let gMoveImg = false
 
 function init() {
     renderImgs()
+
 }
 
 
@@ -34,15 +36,21 @@ function renderImgs() {
 function renderStickers() {
     var stickers = getStickers()
     var HTMLs = `<a class="prev" onclick="plusSlides(-1)">&#10094;</a>`
-    stickers.stickers.forEach(sticker => {
-        HTMLs += `<img src="${sticker.url}" class="png" id="${sticker.id}" ondrag="onSelectSticker(this)">`
+    stickers.pngs.forEach((sticker, idx) => {
+        if (idx < stickers.endIdxToShow && idx >= stickers.endIdxToShow - 4) {
+            HTMLs += `<img src="${sticker.url}" class="png" id="${sticker.id}" onclick="onSelectSticker(this)">`
+        }
     })
     HTMLs += `<a class="next" onclick="plusSlides(1)">&#10095;</a>`
     document.querySelector('.stickers').innerHTML = HTMLs
 
 }
 
-function moveTxtModile(ev) {
+function moveContentMobile(ev) {
+    moveTxtMobile(ev)
+    moveImgMobile(ev)
+}
+function moveTxtMobile(ev) {
     ev.preventDefault()
     var offsetX = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
     var offsetY = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
@@ -58,7 +66,31 @@ function moveTxtModile(ev) {
         renderCanvas()
     }
 }
-
+function moveImgMobile(ev) {
+    ev.preventDefault()
+    var offsetX = ev.touches[0].pageX - ev.touches[0].target.offsetLeft;
+    var offsetY = ev.touches[0].pageY - ev.touches[0].target.offsetTop;
+    var stickers = getStickers()
+    if (stickers.selectedStickerId === 0) return
+    var sticker = stickers.pngs[stickers.selectedStickerId - 101]
+    var xStart = sticker.x
+    var xEnd = sticker.x + sticker.size
+    var yStart = sticker.y
+    var yEnd = sticker.y + sticker.size
+    // console.log(ev.offsetX)
+    if (offsetX > xStart && offsetX < xEnd &&
+        offsetY > yStart && offsetY < yEnd &&
+        ev.type === 'touchstart') gMoveImg = true
+    if (gMoveImg) {
+        sticker.y = offsetY - sticker.size / 2
+        sticker.x = offsetX - sticker.size / 2
+        renderCanvas()
+    }
+}
+function moveContent(ev) {
+    moveTxt(ev)
+    moveImg(ev)
+}
 function moveTxt(ev) {
     var objtxt = getTxt()
     var xStart = objtxt.x - gCtx.measureText(objtxt.line).width / 2
@@ -72,9 +104,29 @@ function moveTxt(ev) {
         renderCanvas()
     }
 }
+function moveImg(ev) {
+    var stickers = getStickers()
+    if (stickers.selectedStickerId === 0) return
+    var sticker = stickers.pngs[stickers.selectedStickerId - 101]
+    var xStart = sticker.x
+    var xEnd = sticker.x + sticker.size
+    var yStart = sticker.y
+    var yEnd = sticker.y + sticker.size
+    // console.log(ev.offsetX)
+    if (ev.offsetX > xStart && ev.offsetX < xEnd &&
+        ev.offsetY > yStart && ev.offsetY < yEnd &&
+        ev.type === 'mousedown') gMoveImg = true
+
+    if (gMoveImg) {
+        sticker.y = ev.offsetY - sticker.size / 2
+        sticker.x = ev.offsetX - sticker.size / 2
+        renderCanvas()
+    }
+}
 
 function moveTxtEnd() {
     gMoveTxt = false
+    gMoveImg = false
 }
 
 function resizeCanvas() {
@@ -97,7 +149,8 @@ function renderCanvas() {
     memes.txts.forEach((txt) => {
         drawText(txt)
     })
-    // uploadImg()
+    onSetIconPos()
+
 }
 
 function drawImg(elImg) {
@@ -168,12 +221,42 @@ function onChangeCurrTxt() {
 }
 function onSelectSticker(el) {
     selectSticker(el)
+    onSetIconPos()
 }
-function onSetIconPos(ev) {
-    ev.preventDefault()
+function onSetIconPos() {
     var stickers = getStickers()
+    if (stickers.selectedStickerId === 0) return
     var img = document.getElementById(stickers.selectedStickerId)
-    gCtx.drawImage(img, 0, 0, 40, 40)
+    var sticker = stickers.pngs[stickers.selectedStickerId - 101]
+    gCtx.drawImage(img, sticker.x, sticker.y, sticker.size, sticker.size)
+}
+function plusSlides(operator) {
+    setStickersIdxToShow(operator)
+    renderStickers()
+}
+
+function onSaveImg() {
+    var canvas = document.querySelector('canvas')
+    var imgURL = canvas.toDataURL()
+    saveDataImg(imgURL)
+    // showSavedMemes()
+
+}
+
+function showSavedMemes() {
+    addHide('.gallery')
+    addHide('.keywords')
+    addHide('.canvas-container')
+    addHide('.editor-tools')
+    toggelHide('.saved-memes')
+
+    var dataImgs = getSavedMemes()
+    var memes = document.querySelector('.saved-memes');
+    var HTMLs = ''
+    dataImgs.forEach(dataImg => {
+        HTMLs += `<img src="${dataImg}">`
+    })
+    memes.innerHTML = HTMLs
 }
 
 function scrollToCanvas() {
@@ -204,4 +287,3 @@ function setAlignTxt(txt) {
     }
     return x
 }
-

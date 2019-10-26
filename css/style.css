@@ -14,7 +14,6 @@ body, html {
     user-select: none;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: transparent;
-   
 }
 
 html {
@@ -64,7 +63,8 @@ button {
     cursor: pointer;
     outline-style: none;
 }
-button:active{
+
+button:active {
     background-color: rgba(173, 173, 173, 0.37);
 }
 
@@ -74,7 +74,8 @@ button:focus {
 
 input:focus {
     outline: none;
-    border: 1px solid #ff7f00;;
+    border: 1px solid #ff7f00;
+    ;
 }
 
 footer {
@@ -251,14 +252,21 @@ footer {
     display: inline-block;
 }
 
+.png:active {
+    background-color: rgba(173, 173, 173, 0.37);
+    border-radius: 12px;
+}
+
 .tools-color1 {
     background-image: url(../ICONS/text\ stroke.png);
     background-size: cover;
+    background-position: center;
 }
 
 .tools-color2 {
     background-image: url(../ICONS/paint-board-and-brush.png);
     background-size: cover;
+    background-position: center;
 }
 
 .fonts {
@@ -313,6 +321,26 @@ footer {
     color: #ffffff;
 }
 
+.share a {
+    color: #ffffff;
+}
+
+.prev {
+    cursor: pointer;
+}
+
+.next {
+    cursor: pointer;
+}
+
+.prev:active {
+    background-color: rgba(173, 173, 173, 0.37);
+}
+
+.next:active {
+    background-color: rgba(173, 173, 173, 0.37);
+}
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -358,6 +386,20 @@ footer {
     width: 100%;
     height: 25px;
     color: #ffffff;
+}
+
+.saved-memes {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+}
+
+.saved-memes img {
+    width: 353px;
+    height: 278px;
+    margin: 20px;
 }
 
 @media screen and (min-width: 700px) {
@@ -437,6 +479,11 @@ footer {
         height: 70px;
         width: 70px;
     }
+    .action-btn {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
     .share {
         align-self: flex-end;
         height: 60px;
@@ -482,7 +529,9 @@ footer {
         color: #ffffff;
     }
 }
+
 /* helper */
+
 .hide {
     display: none;
 }

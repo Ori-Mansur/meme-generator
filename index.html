@@ -26,7 +26,7 @@
                     <a href="">Gallery</a>
                 </li>
                 <li>
-                    <a href="">Memes</a>
+                    <a href="#" onclick="showSavedMemes()">Memes</a>
                 </li>
                 <li>
                     <a href="">About</a>
@@ -66,13 +66,13 @@
 
         <section class="canvas-container hide">
             <canvas id="meme-edotir" 
-            onmousedown="moveTxt(event)" 
-            onmousemove="moveTxt(event)" 
+            onmousedown="moveContent(event)" 
+            onmousemove="moveContent(event)" 
             onmouseup="moveTxtEnd()"
-            ontouchstart="moveTxtModile(event)" 
-            ontouchmove="moveTxtModile(event)" 
+            ontouchstart="moveContentMobile(event)" 
+            ontouchmove="moveContentMobile(event)" 
             ontouchend="moveTxtEnd()"
-            ondragleave="onSetIconPos(event)"></canvas>
+            onlongtouch="console.log(event)"></canvas>
         </section>
         <section class="editor-tools hide">
             <input type="text" name="meme" class="meme" oninput="onDrawTxt(this.value)" placeholder="What on your mind">
@@ -115,10 +115,15 @@
             <div class="stickers">
 
             </div>
-            <button class="share">
-                <a href="#"onclick="PostImageToFacebook(window.authToken)">share</a>
-                    
-                </button>
+            <div class="action-btn">
+            <form class="form-share" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                <input name="img" id="imgData" type="hidden" />
+            <button class="share"> Share</button>
+            </form>
+            <button class="share" onclick="onSaveImg()"> Save</button>
+        </div>
+        </section>
+        <section class="saved-memes hide">
             
         </section>
     </main>
@@ -143,7 +148,7 @@
             all rights reserved 2019
         </div>
     </footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
     <script src="js/utils-service.js"></script>
     <script src="js/utils-fb.js"></script>
     <script src="js/service.js"></script>
