@@ -7,7 +7,26 @@ let gMoveImg = false
 
 function init() {
     renderImgs()
+    renderKeywords()
 
+}
+
+function renderKeywords() {
+    var keywords = getKeywords()
+    var HTMLs = '<ul>'
+    var word;
+    for (word in keywords) {
+        HTMLs += `<li><a href="" style="font-size:${keywords[word]}px;">${word}</a>`
+    }
+    HTMLs += `<li><a href="">more...</a></li></ul>`
+    document.querySelector('.keywords-area').innerHTML = HTMLs
+}
+
+function onSearch() {
+    var searchStr = document.querySelector('.search').value
+    search(searchStr)
+    renderKeywords()
+    document.querySelector('.search').value = ''
 }
 
 

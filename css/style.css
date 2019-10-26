@@ -147,9 +147,17 @@ footer {
     justify-content: center;
     text-align: center;
 }
+.keywords-area ul{
+    padding: 0 10px 0 10px;
+    display: flex;
+    justify-content: space-between;
+}
 
 .keywords li {
     display: inline;
+}
+.keywords a {
+    color: #040a2c;
 }
 
 .gallery {

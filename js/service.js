@@ -1,17 +1,17 @@
 'use strict'
 
 
-var gKeywords = { 'happy': 12, 'funny puk': 1 }
+var gKeywords = { 'happy': 15, 'comics': 30, 'animal': 23 }
 var gImgId = 1
 var gStickerId = 101
 var gImgs = [{ id: gImgId++, url: 'imgs/003.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/004.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/005.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/006.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/12.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/004.jpg', keywords: ['comics'] },
+{ id: gImgId++, url: 'imgs/005.jpg', keywords: ['funny'] },
+{ id: gImgId++, url: 'imgs/006.jpg', keywords: ['animal'] },
+{ id: gImgId++, url: 'imgs/12.jpg', keywords: ['comics'] },
 { id: gImgId++, url: 'imgs/19.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/5.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/8.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/5.jpg', keywords: ['animal'] },
+{ id: gImgId++, url: 'imgs/8.jpg', keywords: ['comics'] },
 { id: gImgId++, url: 'imgs/9.jpg', keywords: ['happy'] }
 ];
 
@@ -48,6 +48,10 @@ var gStickers = {
 }
 
 var gSavedMemes = []
+
+function getKeywords() {
+    return gKeywords
+}
 function getMemes() {
     return gMeme
 }
@@ -133,4 +137,9 @@ function setStickersIdxToShow(operator) {
         gStickers.endIdxToShow = 3
     }
     gStickers.endIdxToShow += operator
-}      
+}
+
+function search(str) {
+    var count = gKeywords[str]
+    gKeywords[str] = (count) ? count + 1 : 1
+}

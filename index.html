@@ -37,27 +37,14 @@
 
     <section class="keywords">
         <section class="search-area">
-            <input type="text" name="search" class="search" placeholder="Enter search keyword">
-            <button class="search-btn">
+            <input type="text" name="" class="search" placeholder="Enter search keyword">
+            <button class="search-btn" onclick="onSearch()">
                 <img src="ICONS/search-icon.png" alt="">
             </button>
         </section>
-        <ul>
-            <li>
-                <a href="">Gallery</a>
-            </li>
-            <li>
-                <a href="">Memes</a>
-            </li>
-            <li>
-                <a href="">About</a>
-            </li>
-            <li>
-                <a href="">
-                    <more class="">more...</more>
-                </a>
-            </li>
-        </ul>
+        <section class="keywords-area">
+
+        </section>
     </section>
     <main>
         <section class="gallery">
@@ -66,13 +53,12 @@
 
         <section class="canvas-container hide">
             <canvas id="meme-edotir" 
-            onmousedown="moveContent(event)" 
-            onmousemove="moveContent(event)" 
-            onmouseup="moveTxtEnd()"
-            ontouchstart="moveContentMobile(event)" 
-            ontouchmove="moveContentMobile(event)" 
-            ontouchend="moveTxtEnd()"
-            onlongtouch="console.log(event)"></canvas>
+                onmousedown="moveContent(event)" 
+                onmousemove="moveContent(event)"
+                onmouseup="moveTxtEnd()" 
+                ontouchstart="moveContentMobile(event)" 
+                ontouchmove="moveContentMobile(event)"
+                ontouchend="moveTxtEnd()" ></canvas>
         </section>
         <section class="editor-tools hide">
             <input type="text" name="meme" class="meme" oninput="onDrawTxt(this.value)" placeholder="What on your mind">
@@ -116,15 +102,15 @@
 
             </div>
             <div class="action-btn">
-            <form class="form-share" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                <input name="img" id="imgData" type="hidden" />
-            <button class="share"> Share</button>
-            </form>
-            <button class="share" onclick="onSaveImg()"> Save</button>
-        </div>
+                <form class="form-share" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="share"> Share</button>
+                </form>
+                <button class="share" onclick="onSaveImg()"> Save</button>
+            </div>
         </section>
         <section class="saved-memes hide">
-            
+
         </section>
     </main>
     <section class="profile">
