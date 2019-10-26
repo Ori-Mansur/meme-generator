@@ -115,7 +115,11 @@
             <div class="stickers">
 
             </div>
-            <button class="share">Share</button>
+            <button class="share">
+                <a href="#"onclick="PostImageToFacebook(window.authToken)">share</a>
+                    
+                </button>
+            
         </section>
     </main>
     <section class="profile">
@@ -139,8 +143,9 @@
             all rights reserved 2019
         </div>
     </footer>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/utils-service.js"></script>
+    <script src="js/utils-fb.js"></script>
     <script src="js/service.js"></script>
     <script src="js/main.js"></script>
 </body>

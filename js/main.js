@@ -97,6 +97,7 @@ function renderCanvas() {
     memes.txts.forEach((txt) => {
         drawText(txt)
     })
+    // uploadImg()
 }
 
 function drawImg(elImg) {
@@ -203,3 +204,4 @@ function setAlignTxt(txt) {
     }
     return x
 }
+
