@@ -31,7 +31,9 @@ function onDoSearch(str, ev) {
 function onSearch() {
     var searchStr = document.querySelector('.search').value
     search(searchStr)
+    doSearch(searchStr)
     renderKeywords()
+    renderImgs()
     document.querySelector('.search').value = ''
 }
 

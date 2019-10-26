@@ -5,7 +5,7 @@ var gKeywords = { 'happy': 15, 'comics': 30, 'animal': 23 }
 var gImgId = 1
 var gStickerId = 101
 var gImgs = [{ id: gImgId++, url: 'imgs/003.jpg', keywords: ['happy'] },
-{ id: gImgId++, url: 'imgs/004.jpg', keywords: ['comics','happy'] },
+{ id: gImgId++, url: 'imgs/004.jpg', keywords: ['comics', 'happy'] },
 { id: gImgId++, url: 'imgs/005.jpg', keywords: ['funny'] },
 { id: gImgId++, url: 'imgs/006.jpg', keywords: ['animal'] },
 { id: gImgId++, url: 'imgs/12.jpg', keywords: ['comics'] },
@@ -59,7 +59,7 @@ function getTxt() {
     return gMeme.txts[gMeme.selectedTxtIdx]
 }
 function getImgs() {
-    if(!gFilteredImgs)gFilteredImgs=gImgs
+    if (!gFilteredImgs) gFilteredImgs = gImgs
     return gFilteredImgs
 }
 function getStickers() {
@@ -146,15 +146,12 @@ function search(str) {
 
 }
 
-function doSearch(str){
-    console.log(str);
-    
-    var searchImgs=gImgs.filter(img=>{
-        return img.keywords.some(keyword=>{
-            return keyword===str
+function doSearch(str) {
+    var searchImgs = gImgs.filter(img => {
+        return img.keywords.some(keyword => {
+            return keyword === str
         })
     })
-    console.log(searchImgs);
-    gFilteredImgs=searchImgs
-    
+    gFilteredImgs = searchImgs
+
 }
