@@ -12,7 +12,24 @@ var gImgs = [{ id: gImgId++, url: 'imgs/003.jpg', keywords: ['happy'] },
 { id: gImgId++, url: 'imgs/19.jpg', keywords: ['happy'] },
 { id: gImgId++, url: 'imgs/5.jpg', keywords: ['animal'] },
 { id: gImgId++, url: 'imgs/8.jpg', keywords: ['comics'] },
-{ id: gImgId++, url: 'imgs/9.jpg', keywords: ['happy'] }
+{ id: gImgId++, url: 'imgs/9.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/X-Everywhere.jpg', keywords: ['animal'] },
+{ id: gImgId++, url: 'imgs/putin.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/patrick.jpg', keywords: ['animal'] },
+{ id: gImgId++, url: 'imgs/Oprah-You-Get-A.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/One-Does-Not-Simply.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/meme1.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/leo.jpg', keywords: ['animal'] },
+{ id: gImgId++, url: 'imgs/img6.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/img5.jpg', keywords: ['comics'] },
+{ id: gImgId++, url: 'imgs/img4.jpg', keywords: ['animal'] },
+{ id: gImgId++, url: 'imgs/img2.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/img12.jpg', keywords: ['comics'] },
+{ id: gImgId++, url: 'imgs/img11.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/drevil.jpg', keywords: ['comics'] },
+{ id: gImgId++, url: 'imgs/Ancient-Aliens.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/2.jpg', keywords: ['happy'] },
+{ id: gImgId++, url: 'imgs/003.jpg', keywords: ['comics'] }
 ];
 
 var gFilteredImgs;
@@ -154,4 +171,8 @@ function doSearch(str) {
     })
     gFilteredImgs = searchImgs
 
+}
+
+function showAll() {
+    gFilteredImgs = gImgs
 }

@@ -18,13 +18,18 @@ function renderKeywords() {
     for (word in keywords) {
         HTMLs += `<li><a href="#" style="font-size:${keywords[word]}px;" onclick="onDoSearch('${word}',event)">${word}</a></li>`
     }
-    HTMLs += `<li><a href="">more...</a></li></ul>`
+    HTMLs += `<li><a href="#" onclick="onShowAll(event)">more...</a></li></ul>`
     document.querySelector('.keywords-area').innerHTML = HTMLs
 }
 
 function onDoSearch(str, ev) {
     ev.preventDefault()
     doSearch(str)
+    renderImgs()
+}
+function onShowAll(ev) {
+    ev.preventDefault()
+    showAll()
     renderImgs()
 }
 
