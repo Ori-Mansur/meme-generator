@@ -84,7 +84,8 @@ function getStickers() {
 }
 function getSavedMemes() {
     var savedMemes = loadFromStorage('imgsData')
-    gSavedMemes = savedMemes
+    if(savedMemes)gSavedMemes = savedMemes
+    else gSavedMemes=[]
     return gSavedMemes
 }
 

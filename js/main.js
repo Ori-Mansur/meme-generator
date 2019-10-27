@@ -285,9 +285,10 @@ function showSavedMemes() {
     var dataImgs = getSavedMemes()
     var memes = document.querySelector('.saved-memes');
     var HTMLs = ''
-    dataImgs.forEach(dataImg => {
+    dataImgs.forEach((dataImg) => {
         HTMLs += `<img src="${dataImg}">`
     })
+    if(!HTMLs)HTMLs='No Meme Saved'
     memes.innerHTML = HTMLs
 }
 
