@@ -4,7 +4,20 @@
 
 @font-face {
     font-family: Montserrat;
-    src: url(../fonts/Montserrat-Regular.ttf)
+    src: url(../fonts/Montserrat-Regular.ttf);
+    src: url(../fonts/montserrat-regular-webfont.eot),
+    url(../fonts/montserrat-regular-webfont.svg),
+    url(../fonts/montserrat-regular-webfont.ttf),
+    url(../fonts/montserrat-regular-webfont.woff),
+    url(../fonts/montserrat-regular-webfont.woff2),
+}
+@font-face {
+    font-family: Impact;
+    src: url(../fonts/impact.ttf);
+    src: url(../fonts/Impact.eot),
+    url(../fonts/Impact.svg),
+    url(../fonts/Impact.woff),
+    url(../fonts/Impact.woff2),
 }
 
 body, html {
