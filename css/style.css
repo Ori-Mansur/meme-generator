@@ -11,14 +11,7 @@
     url(../fonts/montserrat-regular-webfont.woff),
     url(../fonts/montserrat-regular-webfont.woff2),
 }
-@font-face {
-    font-family: Impact;
-    src: url(../fonts/impact.ttf);
-    src: url(../fonts/Impact.eot),
-    url(../fonts/Impact.svg),
-    url(../fonts/Impact.woff),
-    url(../fonts/Impact.woff2),
-}
+
 
 body, html {
     -webkit-user-select: none;
@@ -30,6 +23,7 @@ body, html {
 }
 
 html {
+    
     font-family: Montserrat;
 }
 
@@ -84,11 +78,14 @@ button:active {
 button:focus {
     outline: none;
 }
+input{
+padding-left: 20px;
+}
 
 input:focus {
     outline: none;
     border: 1px solid #ff7f00;
-    ;
+    
 }
 
 footer {
@@ -233,7 +230,7 @@ footer {
     margin-left: 10px;
     /* border:1px solid black; */
     margin-bottom: 5px;
-    font-family: Impact;
+    /* font-family: Impact,impactx; */
 }
 
 .meme-edotir {
@@ -333,6 +330,7 @@ footer {
     border-radius: 12px;
     background-color: #ffffff;
     cursor: pointer;
+    padding-left: 20px
 }
 
 .fonts:focus {
