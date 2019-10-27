@@ -163,6 +163,8 @@ footer {
 }
 
 .file-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -170,6 +172,9 @@ footer {
     position: absolute;
     z-index: -1;
 }
+.file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
 
 .file {
     display: flex;
