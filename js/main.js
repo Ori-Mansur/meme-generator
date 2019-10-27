@@ -33,13 +33,13 @@ function onShowAll(ev) {
     renderImgs()
 }
 
-function onSearch() {
+function onSearch(ev) {
     var searchStr = document.querySelector('.search').value
     search(searchStr)
     doSearch(searchStr)
     renderKeywords()
     renderImgs()
-    document.querySelector('.search').value = ''
+    // document.querySelector('.search').value = ''
 }
 
 

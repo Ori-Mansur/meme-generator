@@ -159,15 +159,22 @@ function setStickersIdxToShow(operator) {
 }
 
 function search(str) {
-    var count = gKeywords[str]
-    gKeywords[str] = (count) ? count + 1 : 1
+    var keyword=gImgs.find(img=>{
+        return img.keywords.some(keyword=>{
+            return keyword===str
+        })
+    })
+   if(keyword){
+       var count = gKeywords[str]
+       gKeywords[str] = (count) ? count + 1 : 1
+   }
 
 }
 
 function doSearch(str) {
     var searchImgs = gImgs.filter(img => {
         return img.keywords.some(keyword => {
-            return keyword === str
+            return keyword.includes(str) 
         })
     })
     gFilteredImgs = searchImgs
