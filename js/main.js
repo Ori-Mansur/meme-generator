@@ -276,6 +276,7 @@ function onSaveImg() {
 }
 
 function showSavedMemes() {
+    toggleMenu()
     addHide('.gallery')
     addHide('.keywords')
     addHide('.canvas-container')
