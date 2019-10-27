@@ -23,7 +23,7 @@
         <nav>
             <ul>
                 <li>
-                    <a href="">Gallery</a>
+                    <a href="#" onclick="showGallery()">Gallery</a>
                 </li>
                 <li>
                     <a href="#" onclick="showSavedMemes()">Memes</a>
@@ -47,10 +47,18 @@
         <section class="keywords-area">
 
         </section>
-    </section>
+    
+    
+</section>
+<div class="upload-area">
+<label for="file" class="file">Upload</label>
+<input type="file" id="file" class="file-input" onchange="onGetFile(this)">
+                <img src="" class="up-img hide">
+            </div>
     <main>
+        
         <section class="gallery">
-
+                
 
         </section>
 
@@ -66,20 +74,38 @@
         <section class="editor-tools hide">
             <input type="text" name="meme" class="meme" oninput="onDrawTxt(this.value)" placeholder="What on your mind">
             <div class="first-setting-btns">
-                <button onclick="onMoveLine(-1)" class="tools"><img src="ICONS/icons8-up-60.png"></button>
-                <button onclick="onMoveLine(1)" class="tools"><img src="ICONS/icons8-down-arrow-60.png"></button>
+                <button onclick="onMoveLine(-1)" class="tools">
+                    <img src="ICONS/icons8-up-60.png">
+                </button>
+                <button onclick="onMoveLine(1)" class="tools">
+                    <img src="ICONS/icons8-down-arrow-60.png">
+                </button>
                 <button onclick="onChangeCurrTxt()" class="tools">
-                    <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
-                <button onclick="onAddTxt()" class="tools"><img src="ICONS/add.png"></button>
-                <button onclick="onRemoveTxt()" class="tools"><img src="ICONS/trash.png"></button>
+                    <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png">
+                </button>
+                <button onclick="onAddTxt()" class="tools">
+                    <img src="ICONS/add.png">
+                </button>
+                <button onclick="onRemoveTxt()" class="tools">
+                    <img src="ICONS/trash.png">
+                </button>
             </div>
             <div class="sec-setting-btns">
-                <button onclick="onEditTxtSize(1)" class="tools"><img src="ICONS/increase font - icon.png"></button>
-                <button onclick="onEditTxtSize(-1)" class="tools"><img src="ICONS/decrease font - icon.png"></button>
-                <button onclick="onEditTxtAlign('right')" class="tools"><img src="ICONS/align-to-left.png"></button>
-                <button onclick="onEditTxtAlign('center')" class="tools"><img
-                        src="ICONS/center-text-alignment.png"></button>
-                <button onclick="onEditTxtAlign('left')" class="tools"><img src="ICONS/align-to-right.png"></button>
+                <button onclick="onEditTxtSize(1)" class="tools">
+                    <img src="ICONS/increase font - icon.png">
+                </button>
+                <button onclick="onEditTxtSize(-1)" class="tools">
+                    <img src="ICONS/decrease font - icon.png">
+                </button>
+                <button onclick="onEditTxtAlign('right')" class="tools">
+                    <img src="ICONS/align-to-left.png">
+                </button>
+                <button onclick="onEditTxtAlign('center')" class="tools">
+                    <img src="ICONS/center-text-alignment.png">
+                </button>
+                <button onclick="onEditTxtAlign('left')" class="tools">
+                    <img src="ICONS/align-to-right.png">
+                </button>
             </div>
             <div class="third-setting-btns">
                 <select name="" class="fonts" onchange="onChangeFont(this.value)">
@@ -110,6 +136,10 @@
                     <button class="share"> Share</button>
                 </form>
                 <button class="share" onclick="onSaveImg()"> Save</button>
+                <button class="share"> 
+                        <a href="#" onclick="onDownloadImg(this)" download="meme.png">
+                    Download
+                </a></button>
             </div>
         </section>
         <section class="saved-memes hide">

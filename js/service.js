@@ -84,11 +84,14 @@ function getStickers() {
 }
 function getSavedMemes() {
     var savedMemes = loadFromStorage('imgsData')
-    if(savedMemes)gSavedMemes = savedMemes
-    else gSavedMemes=[]
+    if (savedMemes) gSavedMemes = savedMemes
+    else gSavedMemes = []
     return gSavedMemes
 }
-
+function addImg(img, ratio, name) {
+    gImgs.unshift({ id: gImgId++, url: img.src, ratio, keywords: ['comics', name] })
+    gMeme.selectedImgId = gImgId - 1
+}
 function saveDataImg(imgURL) {
     getSavedMemes()
     gSavedMemes.push(imgURL)
@@ -159,22 +162,22 @@ function setStickersIdxToShow(operator) {
 }
 
 function search(str) {
-    var keyword=gImgs.find(img=>{
-        return img.keywords.some(keyword=>{
-            return keyword===str
+    var keyword = gImgs.find(img => {
+        return img.keywords.some(keyword => {
+            return keyword === str
         })
     })
-   if(keyword){
-       var count = gKeywords[str]
-       gKeywords[str] = (count) ? count + 1 : 1
-   }
+    if (keyword) {
+        var count = gKeywords[str]
+        gKeywords[str] = (count) ? count + 1 : 1
+    }
 
 }
 
 function doSearch(str) {
     var searchImgs = gImgs.filter(img => {
         return img.keywords.some(keyword => {
-            return keyword.includes(str) 
+            return keyword.includes(str)
         })
     })
     gFilteredImgs = searchImgs

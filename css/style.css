@@ -55,7 +55,7 @@ main {
     display: flex;
     flex-direction: column;
     background-color: #e3e3e3;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 button {
@@ -147,7 +147,8 @@ footer {
     justify-content: center;
     text-align: center;
 }
-.keywords-area ul{
+
+.keywords-area ul {
     padding: 0 10px 0 10px;
     display: flex;
     justify-content: space-between;
@@ -156,8 +157,38 @@ footer {
 .keywords li {
     display: inline;
 }
+
 .keywords a {
     color: #040a2c;
+}
+
+.file-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Montserrat;
+    width: 120px;
+    height: 40px;
+    margin-left: 16px;
+    border-radius: 12px;
+    background-color: #ff7f00;
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.upload-area {
+    padding-top: 9px;
+    background-color: #e3e3e3;
 }
 
 .gallery {
@@ -179,7 +210,7 @@ footer {
 /*---meme-editor--- */
 
 .canvas-container {
-    height: 310px;
+    /* height: 310px; */
     margin-right: 10px;
     margin-left: 10px;
     /* border:1px solid black; */
@@ -414,6 +445,7 @@ footer {
     main {
         flex-direction: row;
         justify-content: center;
+        align-items: center;
     }
     nav {
         position: static;
@@ -445,13 +477,12 @@ footer {
         margin: 20px;
     }
     .canvas-container {
-        width: 50%;
-        height: 551px;
+        width: 500px;
         margin-bottom: 25px;
         margin-left: 50px;
     }
     .editor-tools {
-        padding-left: 100px;
+        padding-left: 50px;
         margin-right: 135px;
         width: 50%;
         margin-bottom: 25px;

@@ -163,6 +163,12 @@ function moveTxtEnd() {
 
 function resizeCanvas() {
     var elContainer = document.querySelector('.canvas-container');
+    var height = 310
+    if (window.innerWidth > 700) {
+        elContainer.style.width = '50%'
+        height = elContainer.offsetWidth
+    }
+    elContainer.style.height = height + 'px'
     gCanvas.width = elContainer.offsetWidth
     gCanvas.height = elContainer.offsetHeight
 }
@@ -275,6 +281,11 @@ function onSaveImg() {
 
 }
 
+function onDownloadImg(el) {
+    var img = gCanvas.toDataURL('meme/png')
+    el.href = img
+}
+
 function showSavedMemes() {
     toggleMenu()
     addHide('.gallery')
@@ -285,16 +296,16 @@ function showSavedMemes() {
 
     var dataImgs = getSavedMemes()
     var memes = document.querySelector('.saved-memes');
-    var HTMLs = ''
+    var htmls = ''
     dataImgs.forEach((dataImg) => {
-        HTMLs += `<img src="${dataImg}">`
+        htmls += `<img src="${dataImg}">`
     })
-    if(!HTMLs)HTMLs='No Meme Saved'
-    memes.innerHTML = HTMLs
+    if (!htmls) htmls = 'No Meme Saved'
+    memes.innerHTML = htmls
 }
 
 function scrollToCanvas() {
-    if (document.activeElement.tagName == "INPUT") {
+    if (document.activeElement.tagName == "INPUT" && window.innerWidth < 700) {
         var el = document.querySelector('canvas')
         el.scrollIntoView()
     }
@@ -320,4 +331,42 @@ function setAlignTxt(txt) {
             break;
     }
     return x
+}
+
+function onGetFile(el) {
+    if(!el.value)return
+    var reader = new FileReader();
+    reader.onload = imageIsLoaded;
+    reader.readAsDataURL(el.files[0])
+}
+
+function imageIsLoaded(e) {
+    document.querySelector('.up-img').src = e.target.result;
+    var img = document.querySelector('.up-img')
+    var w = img.offsetWidth
+    var h = img.offsetHeight
+    var retio = w / h
+    var el=document.querySelector('.file-input')
+    var values=el.value.split('\\')
+    var strValue=values[values.length-1]
+    var imgName=strValue.split('.')[0]
+    console.log(imgName);
+    addImg(img, retio,imgName)
+    renderImgs()
+    if (document.querySelector('.gallery').classList.contains('hide')) {
+    img.onload=function(){
+        renderCanvas()
+    }
+}
+};
+
+
+function showGallery(){
+    toggleMenu()
+    removeHide('.keywords')
+    removeHide('.gallery')
+    addHide('.canvas-container')
+    addHide('.editor-tools')
+    addHide('.saved-memes')
+    renderImgs()
 }
