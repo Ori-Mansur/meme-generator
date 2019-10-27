@@ -352,9 +352,9 @@ function imageIsLoaded(e) {
     var imgName=strValue.split('.')[0]
     console.log(imgName);
     addImg(img, retio,imgName)
+    img.onload=function(){
     renderImgs()
     if (document.querySelector('.gallery').classList.contains('hide')) {
-    img.onload=function(){
         renderCanvas()
     }
 }
