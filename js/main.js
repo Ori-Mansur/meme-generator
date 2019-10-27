@@ -350,8 +350,9 @@ function imageIsLoaded(e) {
     var values=el.value.split('\\')
     var strValue=values[values.length-1]
     var imgName=strValue.split('.')[0]
-    console.log(imgName);
+    // console.log(imgName);
     addImg(img, retio,imgName)
+    renderImgs()
     img.onload=function(){
     renderImgs()
     if (document.querySelector('.gallery').classList.contains('hide')) {
