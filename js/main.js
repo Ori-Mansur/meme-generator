@@ -33,8 +33,8 @@ function onShowAll(ev) {
     renderImgs()
 }
 
-function onSearch(ev) {
-    var searchStr = document.querySelector('.search').value
+function onSearch() {
+    var searchStr = document.querySelector('.search').value.toLowerCase()
     search(searchStr)
     doSearch(searchStr)
     renderKeywords()
